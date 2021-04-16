@@ -12,9 +12,13 @@ function getInChat(){
     promisse.then(startChat);
     promisse.catch(changeName);
 }
+function changeName(){
+    const msgError = "O nome " +userName+ " está em uso, escolha outro para entrar!";
+    alert(msgError);
+}
 function startChat(){
     chatInit();
-    changeScreen();
+    changeScreenFromEntranceToChatScreen();
     setInterval(updateStatusToOnline,3000);
     setInterval(chatInit,3000);
 }
@@ -22,11 +26,8 @@ function updateStatusToOnline(){
     let message = {name: userName};     
     axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/status', message); 
 }
-function changeName(){
-    const msgError = "O nome " +userName+ " está em uso, escolha outro para entrar!";
-    alert(msgError);
-}
-function changeScreen(){
+
+function changeScreenFromEntranceToChatScreen(){
     const faceScreenDiv = document.querySelector(".entrance-screen");    
     const headerDiv = document.querySelector(".header");
     const chatContentDiv = document.querySelector(".chat-content");
@@ -46,8 +47,7 @@ function getChatData(answer){
     console.log(chatContent);
     renderChatMessages(); 
 }
-function renderChatMessages(){    
-    
+function renderChatMessages(){      
     const container = document.querySelector(".chat-content");
     container.innerHTML = "";
 
@@ -62,7 +62,7 @@ function renderChatMessages(){
         <div class="${chatBoxStyleByType}">${chatContent[i].time} &nbsp; <strong>${chatContent[i].from}</strong> &nbsp; para &nbsp; <strong>${chatContent[i].to}</strong>: ${chatContent[i].text}</div>
       `;    
     }
-    window.scrollTo(0, document.body.scrollHeight);
+    window.scrollTo(0, document.body.scrollHeight);  //Essa função da um scroll automatico cada vez que um item é add ao chat ou o chat é atualizado
 }
 function sendMessage() {
     let textToSend = document.querySelector(".text-to-send");
@@ -77,13 +77,13 @@ function sendMessage() {
     const requisition = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/messages",userMessageToChat);
     requisition.then(chatInit); 
     textToSend.value = "";
-    requisition.catch(errorThreat);   
+    requisition.catch(errorFromSendMessageThreat);   
 }
-function sendPressingEnter(enterButton){
+function sendMessagePressingEnterButton(enterButton){
     if(event.key === 'Enter'){
         sendMessage();
     }
 }
-function errorThreat(){
+function errorFromSendMessageThreat(){
     window.location.reload();
 }
