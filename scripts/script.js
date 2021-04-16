@@ -20,7 +20,7 @@ function startChat(){
     chatInit();
     changeScreen();
     setInterval(updateStatus,4000);
-    setInterval(chatInit, 3000);
+    setInterval(chatInit,3000);
 }
 function updateStatus() {
     let message = {name: userName};     
@@ -66,11 +66,12 @@ function renderChatMessages(){
         <div class="chat-box">${chatContent[i].time} &nbsp; <strong>${chatContent[i].from}</strong> &nbsp; para ${chatContent[i].to}: ${chatContent[i].text}</div>
     `;
     }
+    window.scrollTo(0, document.body.scrollHeight);
 }
 
 function sendMessage() {
-    const textToSend = document.querySelector(".text-to-send");
-    const textThatWillBeSended = textToSend.value;
+    let textToSend = document.querySelector(".text-to-send");
+    let textThatWillBeSended = textToSend.value;
     
     const userMessageToChat = {
         from: userName,
@@ -81,5 +82,6 @@ function sendMessage() {
     
     const requisition = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/messages",userMessageToChat);
     requisition.then(chatInit); 
+    textToSend.value = "";
     //requisition.catch(errorThreat);   
 }
