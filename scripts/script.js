@@ -2,14 +2,11 @@ let chatContent = [];
 let userName;
 
 function getInChat(){
-
     const nameInput = document.querySelector(".user-name");
     const name = nameInput.value;
     userName = name;
 
-    const chatName = {
-        name: name
-    }
+    const chatName = {name: name}
     const promisse = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/participants",chatName);
 
     promisse.then(startChat);
@@ -19,11 +16,11 @@ function getInChat(){
 function startChat(){
     chatInit();
     changeScreen();
-    setInterval(updateStatus,3000);
+    setInterval(updateStatusToOnline,3000);
     setInterval(chatInit,3000);
 }
 
-function updateStatus() {
+function updateStatusToOnline() {
     let message = {name: userName};     
     axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/status', message); 
 }
@@ -87,13 +84,19 @@ function sendMessage() {
         to: "Todos",
         text: textThatWillBeSended,
         type: "message"
-    }
-    
+    }    
     const requisition = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/messages",userMessageToChat);
     requisition.then(chatInit); 
     textToSend.value = "";
     requisition.catch(errorThreat);   
 }
+
+function sendPressingEnter(enterButton){
+    if(event.key === 'Enter'){
+        sendMessage();
+    }
+}
+
 function errorThreat(){
     window.location.reload(true);
 }

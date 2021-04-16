@@ -16,7 +16,7 @@
    
     <div class="header hidden"><img src="Midia/logo 1.png"><img src="Midia/Vector.png"></div>
     <div class="chat-content hidden"></div>
-    <div class="footer hidden"><input type="text" class="text-to-send" placeholder="Escreva aqui..."/><ion-icon name="paper-plane-outline" onclick="sendMessage(this)"></ion-icon></div>
+    <div class="footer hidden"><input type="text" class="text-to-send" placeholder="Escreva aqui..." onkeydown="sendPressingEnter(this)"/><ion-icon name="paper-plane-outline" onclick="sendMessage(this)"></ion-icon></div>
   
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
