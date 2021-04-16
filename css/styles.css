@@ -62,10 +62,10 @@ p {
     border-radius: 2px;
     background: #fff;    
 }
-.chat-box.newUser-inChat, .chat-box.userLeft-chat{
+.chat-box.status-type{
     background: #dcdcdc;
 }
-.chat-box.private-message{
+.chat-box.private-type{
     background: #ffdede;
 }
 ion-icon{
