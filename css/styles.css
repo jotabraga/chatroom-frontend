@@ -1,9 +1,5 @@
-  
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
-a{
-    text-decoration: none;
-    color: inherit;
-}
+
 * {
     box-sizing: border-box;
 }
@@ -40,7 +36,6 @@ p {
 }
 .footer p{
     font-size: 18px;
-    font-style: italic;
 }
 .header {
     top: 0;
@@ -60,7 +55,8 @@ p {
     padding-left: 8px;
     padding-right: 9px;
     border-radius: 2px;
-    background: #fff;    
+    background: #fff; 
+    font-size: 14px;   
 }
 .chat-box.status-type{
     background: #dcdcdc;
@@ -113,6 +109,6 @@ strong{
 }
 .text-to-send{
     font-style: italic;
-    width: auto;
+    width: 100%;
     border: none;
 }

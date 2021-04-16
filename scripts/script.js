@@ -20,7 +20,7 @@ function startChat(){
     setInterval(chatInit,3000);
 }
 
-function updateStatusToOnline() {
+function updateStatusToOnline(){
     let message = {name: userName};     
     axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/status', message); 
 }
@@ -58,19 +58,16 @@ function renderChatMessages(){
     const container = document.querySelector(".chat-content");
     container.innerHTML = "";
 
-    for(let i=0; i < chatContent.length; i++)
-    {
+    for(let i=0; i < chatContent.length; i++){
+        let chatBoxStyleByType = "chat-box";
         if(chatContent[i].type === "status"){
-        container.innerHTML += `
-        <div class="chat-box status-type">${chatContent[i].time} &nbsp; <strong>${chatContent[i].from}</strong> &nbsp; para ${chatContent[i].to}: ${chatContent[i].text}</div>
-      `;}else    
+            chatBoxStyleByType += " status-type";}
         if(chatContent[i].type === "private_message"){
-            container.innerHTML += `
-            <div class="chat-box private-type">${chatContent[i].time} &nbsp; <strong>${chatContent[i].from}</strong> &nbsp; para ${chatContent[i].to}: ${chatContent[i].text}</div>
-      `;}else{
-            container.innerHTML += `
-            <div class="chat-box">${chatContent[i].time} &nbsp; <strong>${chatContent[i].from}</strong> &nbsp; para ${chatContent[i].to}: ${chatContent[i].text}</div>
-      `;}    
+            chatBoxStyleByType += " private-type";}
+
+        container.innerHTML += `
+        <div class="${chatBoxStyleByType}">${chatContent[i].time} &nbsp; <strong>${chatContent[i].from}</strong> &nbsp; para &nbsp; <strong>${chatContent[i].to}</strong>: ${chatContent[i].text}</div>
+      `;    
     }
     window.scrollTo(0, document.body.scrollHeight);
 }
