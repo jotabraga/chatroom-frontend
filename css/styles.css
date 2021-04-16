@@ -74,7 +74,7 @@ ion-icon{
 .entrance-screen{
     width: 100%;
     height: 100vh;
-    background: green;
+    background: #fff;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -107,4 +107,12 @@ ion-icon{
 }
 .hidden{
     display: none;
+}
+strong{
+    font-weight: bold;
+}
+.text-to-send{
+    font-style: italic;
+    width: auto;
+    border: none;
 }

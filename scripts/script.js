@@ -1,36 +1,85 @@
-getInChat();
-
 let chatContent = [];
+let userName;
 
 function getInChat(){
+    const nameInput = document.querySelector(".user-name");
+    const name = nameInput.value;
+    userName = name;
 
-    //const name = prompt("Qual seu nickname?");
-
-    //const promisse = axion.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/participants");
-    const promisseChat = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/messages");
-    promisseChat.then(getChat);
-
-    function getChat(answer){
-        chatContent = answer.data;
-       
-        renderMsgs();
+    const chatName = {
+        name: name
     }
-    
+
+    const promisse = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/participants",chatName);
+
+    promisse.then(startChat);
+    promisse.catch(changeName);
 }
 
-function renderMsgs(){
+function startChat(){
+    chatInit();
+    changeScreen();
+    setInterval(updateStatus,4000);
+    setInterval(chatInit, 3000);
+}
+function updateStatus() {
+    let message = {name: userName};     
+    axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/status', message); 
+}
+
+function changeName(){
+    const msgError = "O nome " +userName+ " está em uso, escolha outro para entrar!";
+    alert(msgError);
+}
+
+function changeScreen(){
+    const faceScreenDiv = document.querySelector(".entrance-screen");    
+    const headerDiv = document.querySelector(".header");
+    const chatContentDiv = document.querySelector(".chat-content");
+    const footerDiv = document.querySelector(".footer");
+
+    faceScreenDiv.classList.add("hidden");
+    headerDiv.classList.remove("hidden");
+    chatContentDiv.classList.remove("hidden");
+    footerDiv.classList.remove("hidden");
+}
+
+function chatInit(){
+    const promisseChat = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/messages");
+    promisseChat.then(getChatData);
+}  
+function getChatData(answer){
+    chatContent = answer.data;
+    console.log(chatContent);
+    renderChatMessages(); 
+} 
+
+function renderChatMessages(){
+    
+    
     const container = document.querySelector(".chat-content");
     container.innerHTML = "";
 
     for(let i=0; i < chatContent.length; i++)
     {
         container.innerHTML += `
-        <div class="chat-box"><p>${chatContent[i].text}</p></div>
+        <div class="chat-box">${chatContent[i].time} &nbsp; <strong>${chatContent[i].from}</strong> &nbsp; para ${chatContent[i].to}: ${chatContent[i].text}</div>
     `;
-        
-        
-        
-        
+    }
+}
+
+function sendMessage() {
+    const textToSend = document.querySelector(".text-to-send");
+    const textThatWillBeSended = textToSend.value;
     
+    const userMessageToChat = {
+        from: userName,
+        to: "Todos",
+        text: textThatWillBeSended,
+        type: "message"
     }
-    }
+    
+    const requisition = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/messages",userMessageToChat);
+    requisition.then(chatInit); 
+    //requisition.catch(errorThreat);   
+}
