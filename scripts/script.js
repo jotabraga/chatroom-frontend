@@ -12,24 +12,20 @@ function getInChat(){
     promisse.then(startChat);
     promisse.catch(changeName);
 }
-
 function startChat(){
     chatInit();
     changeScreen();
     setInterval(updateStatusToOnline,3000);
     setInterval(chatInit,3000);
 }
-
 function updateStatusToOnline(){
     let message = {name: userName};     
     axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/status', message); 
 }
-
 function changeName(){
     const msgError = "O nome " +userName+ " está em uso, escolha outro para entrar!";
     alert(msgError);
 }
-
 function changeScreen(){
     const faceScreenDiv = document.querySelector(".entrance-screen");    
     const headerDiv = document.querySelector(".header");
@@ -41,18 +37,15 @@ function changeScreen(){
     chatContentDiv.classList.remove("hidden");
     footerDiv.classList.remove("hidden");
 }
-
 function chatInit(){
     const promisseChat = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/messages");
     promisseChat.then(getChatData);
-}  
-
+}
 function getChatData(answer){
     chatContent = answer.data;
     console.log(chatContent);
     renderChatMessages(); 
-} 
-
+}
 function renderChatMessages(){    
     
     const container = document.querySelector(".chat-content");
@@ -71,7 +64,6 @@ function renderChatMessages(){
     }
     window.scrollTo(0, document.body.scrollHeight);
 }
-
 function sendMessage() {
     let textToSend = document.querySelector(".text-to-send");
     let textThatWillBeSended = textToSend.value;
@@ -87,13 +79,11 @@ function sendMessage() {
     textToSend.value = "";
     requisition.catch(errorThreat);   
 }
-
 function sendPressingEnter(enterButton){
     if(event.key === 'Enter'){
         sendMessage();
     }
 }
-
 function errorThreat(){
-    window.location.reload(true);
+    window.location.reload();
 }
