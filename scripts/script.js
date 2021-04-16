@@ -92,5 +92,8 @@ function sendMessage() {
     const requisition = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/messages",userMessageToChat);
     requisition.then(chatInit); 
     textToSend.value = "";
-    //requisition.catch(errorThreat);   
+    requisition.catch(errorThreat);   
+}
+function errorThreat(){
+    window.location.reload(true);
 }
