@@ -87,3 +87,15 @@ function sendMessagePressingEnterButton(enterButton){
 function errorFromSendMessageThreat(){
     window.location.reload();
 }
+function showContactsToMessage(){
+    const darkenedBackground = document.querySelector(".darkened-background");
+    const contactsList = document.querySelector(".contacts-list");
+    console.log(contactsList);
+
+    darkenedBackground.classList.remove("hidden");
+    contactsList.classList.remove("hidden");
+}
+function hideContactsToMessage(element){
+    this.classList.add("hidden");
+    this.nextSibling.classList.add("hidden");
+}

@@ -114,3 +114,31 @@ strong{
     width: 100%;
     border: none;
 }
+.darkened-background{
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,0.6);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 3;
+}
+.contacts-list{
+    background: #fff;
+    font-size: 16px;
+    width: 70%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 4;
+}
+.choose-someone-header{
+    height: 84px;
+    width: 100%;
+    font-weight: bold;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
