@@ -1,24 +1,39 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/reset.css" class="rel">
     <link rel="stylesheet" href="css/styles.css" class="rel">
-    
-    <title>Bate Papo Uol</title>    
+
+    <title>Bate Papo Uol</title>
 
 </head>
+
 <body>
-    <div><div class="darkened-background hidden" onclick="hideContactsToMessage(this)"></div><div class="contacts-list hidden"><div class="choose-someone-header">Escolha um contato para enviar mensagem:</div></div></div>
-    
-    <div class="entrance-screen"><img src="Midia/logo 2.png"><input type="text" class="user-name" placeholder="Digite seu nome"/><button class="enter-chat" onclick="getInChat()"><p>Entrar</p></button></div>   
-    <div class="header hidden"><img src="Midia/logo 1.png"><img src="Midia/Vector.png" onclick="showContactsToMessage()"></div>
+    <div>
+        <div class="darkened-background hidden" onclick="hideContactsToMessage(this)"></div>
+        <div class="contacts-list hidden">
+            <div class="choose-someone-header">Escolha um contato para enviar mensagem:</div>
+        </div>
+    </div>
+
+    <div class="entrance-screen"><img src="Midia/logo 2.png"><input type="text" class="user-name"
+            placeholder="Digite seu nome" /><button class="enter-chat" onclick="getInChat()">
+            <p>Entrar</p>
+        </button></div>
+    <div class="header hidden"><img src="Midia/logo 1.png"><img src="Midia/Vector.png"
+            onclick="showContactsToMessage()"></div>
     <div class="chat-content hidden"></div>
-    <div class="footer hidden"><input type="text" class="text-to-send" placeholder="Escreva aqui..." onkeydown="sendMessagePressingEnterButton(this)"/><ion-icon name="paper-plane-outline" onclick="sendMessage(this)"></ion-icon></div>  
+    <div class="footer hidden"><input type="text" class="text-to-send" placeholder="Escreva aqui..."
+            onkeydown="sendMessagePressingEnterButton(this)" />
+        <ion-icon name="paper-plane-outline" onclick="sendMessage(this)"></ion-icon>
+    </div>
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="scripts/script.js"></script>
 </body>
+
 </html>
